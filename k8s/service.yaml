@@ -1,0 +1,16 @@
+# Service 정의
+apiVersion: v1
+kind: Service
+metadata:
+  name: waterandfish-fe
+  namespace: waterandfish
+spec:
+  type: NodePort
+  selector:
+    app: waterandfish-fe
+  ports:
+    - name: http
+      port: 80
+      targetPort: 80
+      nodePort: 30080
+      protocol: TCP 

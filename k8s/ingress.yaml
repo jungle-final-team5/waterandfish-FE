@@ -1,0 +1,21 @@
+# 외부에서 내부로 진입하는 규칙
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: waterandfish-fe
+  namespace: waterandfish
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: app.175.106.96.18.nip.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: waterandfish-fe
+                port:
+                  number: 80 
